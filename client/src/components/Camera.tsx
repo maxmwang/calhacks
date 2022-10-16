@@ -23,7 +23,7 @@ function CameraComponent({ image, setImage }: Props) {
     <div>
       <button type="button" onClick={takeImage}>Take photo</button>
       <div className="camera-component">
-        {!image && !dbItems ? (
+        {!image && dbItems.length === 0 ? (
           <Camera
             ref={camera}
             facingMode="environment"
