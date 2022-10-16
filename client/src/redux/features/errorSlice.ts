@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '../store';
-import type { TError } from '../../api/misc';
+import type { TError } from '../../types/misc';
 
 const initialState: TError = {
   type: '',

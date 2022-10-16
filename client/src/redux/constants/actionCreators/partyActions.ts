@@ -1,4 +1,4 @@
-import type TParty from '../../../api/party';
+import type TParty from '../../../types/party';
 import {
   PARTY_CREATE,
   PARTY_DELETE,

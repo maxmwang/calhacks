@@ -1,4 +1,4 @@
-import { TError, TAppView } from '../../../api/misc';
+import { TError, TAppView } from '../../../types/misc';
 import { SOCKET_CONNECT, ERROR_SET, VIEW_SET } from '../actionNames/socketEvents';
 
 export const socketConnect = () => ({

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '../store';
-import type TSelf from '../../api/self';
+import type TSelf from '../../types/self';
 
 const initialState: TSelf = {
   name: '',

@@ -1,4 +1,4 @@
-import type TItem from '../../../api/item';
+import type TItem from '../../../types/item';
 import {
   ITEM_ADD,
   ITEM_REMOVE,

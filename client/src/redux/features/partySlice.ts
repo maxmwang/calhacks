@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '../store';
-import type TParty from '../../api/party';
-import type TItem from '../../api/item';
+import type TParty from '../../types/party';
+import type TItem from '../../types/item';
 
 const initialState: TParty = {
   name: '',
