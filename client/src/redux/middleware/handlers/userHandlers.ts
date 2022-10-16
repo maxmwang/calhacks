@@ -19,7 +19,7 @@ export const handleUserLogin: Handler = async ({ dispatch, getState }, action) =
   if (res.data.success) {
     dispatch(errorReset());
     dispatch(userSet(username, res.data.id));
-    dispatch(appViewSet('home'));
+    dispatch(appViewSet('split'));
   } else {
     const { type, message } = res.data;
     dispatch(errorSet({ type, message }));

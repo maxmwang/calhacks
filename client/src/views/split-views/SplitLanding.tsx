@@ -14,7 +14,7 @@ function SplitLanding({ setView } : Props) {
   return (
     <div>
       <div id="container">
-        <svg href="../images/split_log.svg" />
+        <img src="https://images.1234567890hihi.repl.co/split_logo.svg"/>
         <JoinPartyButton
           // onBack={() => setView('split')}
           onClick={() => setView('join')}

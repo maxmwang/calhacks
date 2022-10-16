@@ -1,7 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
 #joinpartybutton{
-    background-color: #FFF7E0;
     width: 50px;
     height: 50px;
+    background: #FFF7E0;
+    box-shadow: 0px 4px 6px rgba(184, 163, 103, 0.2);
+    border-radius: 20px;
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+    letter-spacing: 0.8px;
+    padding: 7px 14px;
+    width: calc(100vw - 40px);
+    color: #747171;
+    margin-bottom: 30px;
+
 }
 
 #joinpartybutton.clicked{
@@ -11,6 +27,6 @@
     background-color: green; */
     transform: scale(100);
     color: transparent;
-    background-color: #B3DEFE;
+    background-color: #001A72;
     transition: transform 1s, color 0s, background-color 1s;
 }
