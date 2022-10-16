@@ -21,8 +21,11 @@ function LoginSignup() {
           <input placeholder="Enter Username" value={username} onChange={(e) => setUsername(e.target.value)} />
           <input placeholder="Enter Password" value={password} type="password" onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button type="submit" id="next" onClick={() => dispatch(userLogin(username, password))}>Log In</button>
-        <button type="submit" id="next" onClick={() => setView('signup')}>Register</button>
+        <div id="buttonwrapper">
+          <button type="submit" id="next" onClick={() => dispatch(userLogin(username, password))}>Log In</button>
+          <button type="submit" id="next" onClick={() => setView('signup')}>Register</button>
+        </div>
+        
       </div>
     ),
     signup: (
