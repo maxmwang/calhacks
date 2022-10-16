@@ -39,6 +39,13 @@ export default function itemHandler(io: Server, socket: Socket) {
 
     party.itemsId.push(itemDocument._id);
     await party.save();
+    party.populate('itemsId', (err, populatedParty: any) => {
+      if (err) {
+        socket.emit('error', { type: 'populate', message: err.message });
+        return;
+      }
+      io.to(code).emit('success', { type: ITEM_ADD, payload: populatedParty });
+    });
   }
 
   // @desc Removes item from party

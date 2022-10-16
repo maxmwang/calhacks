@@ -5,7 +5,7 @@ type TParty = {
   code: string;
   host: string;
   members: string[];
-  items: TItem[];
+  itemsId: TItem[];
   tip: number;
   tax: number;
 };

@@ -106,10 +106,16 @@ export default function partyHandler(io: AppServer, socket: AppSocket) {
 
     party.membersId.push(userId);
     await party.save();
-
     setSocketUser(socket, userId, code);
     socket.join(code);
-    socket.emit('success', { type: PARTY_JOIN, payload: party });
+
+    party.populate('itemsId', (err, populatedParty: any) => {
+      if (err) {
+        socket.emit('error', { type: 'populate', message: err.message });
+        return;
+      }
+      io.to(code).emit('success', { type: PARTY_JOIN, payload: populatedParty });
+    });
   }
 
   // @desc Removes a user from a party

@@ -8,7 +8,6 @@ type Props = {
 function Receipt({ image, setImage }: Props) {
   return (
     <section>
-      <h1>Receipt</h1>
       <CameraComponent image={image} setImage={setImage} />
     </section>
   );
