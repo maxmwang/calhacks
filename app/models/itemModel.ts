@@ -3,7 +3,7 @@ import mongoose, { ObjectId, Schema } from 'mongoose';
 export type TItem = mongoose.Document & {
   name: string;
   price: number;
-  owner: ObjectId;
+  ownerIds: ObjectId[];
 };
 export const ItemSchema = new Schema<TItem>({
   name: {
@@ -15,10 +15,10 @@ export const ItemSchema = new Schema<TItem>({
     type: Number,
     required: true,
   },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
+  ownerIds: {
+    type: [mongoose.Schema.Types.ObjectId],
     required: true,
-    default: '',
+    default: [],
   },
 }, {
   timestamps: true,

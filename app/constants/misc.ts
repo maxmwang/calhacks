@@ -2,7 +2,7 @@ import { ClientToServerEvents } from './socketTypes';
 import { TParty } from '../models/partyModel';
 
 export type TError = {
-  type: 'code' | 'name' | 'item' | 'itemId';
+  type: 'code' | 'partyName' | 'userId' | 'item' | 'itemId';
   message: string;
 };
 
@@ -15,7 +15,7 @@ export type TSuccess = {
   // => [client -> create.jsx] error handler
 };
 
-// export type TSocketUser = {
-//   userId: TParty['members'][number];
-//   partyCode: TParty['code'];
-// };
+export type TSocketUser = {
+  userId: TParty['membersId'][number] | string;
+  partyCode: TParty['code'];
+};

@@ -45,7 +45,7 @@ export const login: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    req.login(user, (errLogin) => {
+    req.login(user, async (errLogin) => {
       if (errLogin) {
         res.status(500).json({
           success: false,
@@ -54,8 +54,13 @@ export const login: RequestHandler = async (req, res, next) => {
         });
       }
 
+      const userDocument = await User.findById(user._id);
+      userDocument!.token = user._id;
+      userDocument!.save();
+
       res.status(200).json({
         success: true,
+        token: req.session.passport?.user._id,
       });
     });
   })(req, res, next);
@@ -104,7 +109,7 @@ export const register: RequestHandler = async (req, res) => {
 };
 
 export const logout: RequestHandler = async (req, res) => {
-  req.logout((err) => {
+  req.logout(async (err) => {
     if (err) {
       res.status(500).json({
         success: false,
@@ -112,6 +117,11 @@ export const logout: RequestHandler = async (req, res) => {
         message: 'Server error.',
       });
     }
+
+    const userDocument = await User.findById(req.session.passport?.user._id);
+    userDocument!.token = '';
+    userDocument!.save();
+
     res.status(200).json({
       success: true,
     });

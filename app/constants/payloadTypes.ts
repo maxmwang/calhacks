@@ -13,11 +13,11 @@ export type TDeleteParty = {
 };
 export type TJoinParty = {
   code: TParty['code'];
-  // member: TParty['members'][number]; // User Schema
+  userId: TParty['membersId'][number]; // User Schema
 };
 export type TLeaveParty = {
   code: TParty['code'];
-  // member: TParty['members'][number]; // User Schema
+  userId: TParty['membersId'][number] | string; // User Schema
 };
 export type TAddItem = {
   code: TParty['code'];
@@ -30,10 +30,10 @@ export type TRemoveItem = {
 export type TClaimItem = {
   code: TParty['code'];
   itemId: ObjectId;
-  owner: TItem['owner'];
+  ownerId: TItem['ownerIds'][number];
 };
 export type TUnclaimItem = {
   code: TParty['code'];
   itemId: ObjectId;
-  owner: TItem['owner'];
+  ownerId: TItem['ownerIds'][number];
 };

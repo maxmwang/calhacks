@@ -1,8 +1,7 @@
-import { IncomingMessage } from 'http';
 import { Server, Socket } from 'socket.io';
 import { DefaultEventsMap } from 'socket.io/dist/typed-events';
 
-import type { TError, TSuccess } from './misc';
+import type { TSocketUser, TError, TSuccess } from './misc';
 import * as EVENTS from './socketEvents';
 import * as PAYLOAD_TYPES from './payloadTypes';
 
@@ -35,14 +34,6 @@ export type I = {
   ping: () => void;
 };
 
-interface SessionIncomingMessage extends IncomingMessage {
-  passport: any;
-  res: any;
-  test: number;
-  logIn: any;
-}
-
 export type MySocket = Socket & {
-  request: SessionIncomingMessage;
-  // user: TSocketUser;
+  user: TSocketUser;
 };
