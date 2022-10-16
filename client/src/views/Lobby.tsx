@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Tab,
   Tabs,
@@ -17,6 +17,8 @@ import PartyInfo from '../components/PartyInfo';
 import '../styles/lobby.css';
 
 function Lobby() {
+  const [image, setImage] = useState('');
+
   return (
     <VStack className="lobby">
       <PartyInfo />
@@ -30,10 +32,10 @@ function Lobby() {
 
         <TabPanels>
           <TabPanel>
-            <Receipt />
+            <Receipt image={image} setImage={setImage} />
           </TabPanel>
           <TabPanel>
-            <Parsed />
+            <Parsed image={image} />
           </TabPanel>
           <TabPanel>
             <Split />

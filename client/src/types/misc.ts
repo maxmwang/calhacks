@@ -4,5 +4,5 @@ export type TError = {
 };
 
 export type TAppView = {
-  view: 'join' | 'create' | 'lobby' | 'split' | 'joinparty';
+  view: 'login' | 'home' | 'split' | 'lobby';
 };

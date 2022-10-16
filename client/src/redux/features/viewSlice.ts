@@ -5,7 +5,7 @@ import type { RootState } from '../store';
 import type { TAppView } from '../../types/misc';
 
 const initialState: TAppView = {
-  view: 'join',
+  view: 'login',
 };
 
 export const viewSlice = createSlice({

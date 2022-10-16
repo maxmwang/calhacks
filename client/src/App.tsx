@@ -1,53 +1,35 @@
 import React, { useEffect } from 'react';
 
-import { useDisclosure, Button } from '@chakra-ui/react';
-
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { socketConnect } from './redux/constants/actionCreators/socketActions';
 
-import Join from './views/Join';
-import Create from './views/Create';
+import LoginSignup from './views/LoginSignup';
+import Home from './views/Home';
 import Lobby from './views/Lobby';
 import Split from './views/Split';
-import HowItWorks from './components/HowItWorks';
 import { selectAppView } from './redux/features/viewSlice';
-import JoinParty from './views/JoinParty';
+
 function App() {
   const dispatch = useAppDispatch();
   const view = useAppSelector(selectAppView);
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const views: { [key: string]: JSX.Element } = {
-    join: <Join />,
-    create: <Create />,
+    login: <LoginSignup />,
+    home: <Home />,
     lobby: <Lobby />,
     split: <Split />,
-    joinparty: <JoinParty />
   };
-  console.log(views)
+  console.log(views);
 
   useEffect(() => {
     dispatch(socketConnect());
   }, []);
 
   return (
-    <section>
-      <section className="app">
-        {views[view]}
-      </section>
-
-      <section className="footer">
-        <Button
-          className="button-how-it-works"
-          onClick={onOpen}
-          variant="link"
-          size="xs"
-        >
-          How billZ Works
-        </Button>
-        <HowItWorks isOpen={isOpen} onClose={onClose} />
-      </section>
+    <section className="app">
+      {views[view]}
     </section>
+
   );
 }
 

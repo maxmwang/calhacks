@@ -19,6 +19,7 @@ function handleSocketConnect(dispatch : AppDispatch): Socket {
   });
 
   socket.on('success', (success) => {
+    console.log(success);
     if (success.payload) {
       dispatch(partySet(success.payload));
     }
@@ -26,7 +27,7 @@ function handleSocketConnect(dispatch : AppDispatch): Socket {
     if (success.type === PARTY_CREATE || success.type === PARTY_JOIN) {
       dispatch(appViewSet('lobby'));
     } else if (success.type === PARTY_LEAVE || success.type === PARTY_DELETE) {
-      dispatch(appViewSet('create'));
+      dispatch(appViewSet('home'));
     }
   });
 

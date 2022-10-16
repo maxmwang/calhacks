@@ -60,7 +60,7 @@ export const login: RequestHandler = async (req, res, next) => {
 
       res.status(200).json({
         success: true,
-        token: req.session.passport?.user._id,
+        id: req.session.passport?.user._id,
       });
     });
   })(req, res, next);

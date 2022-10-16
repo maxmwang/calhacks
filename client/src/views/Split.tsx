@@ -1,47 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Input,
-  VStack,
-  Button,
-  Divider,
-  FormLabel,
-  FormControl,
-  FormErrorMessage,
-} from '@chakra-ui/react';
+import React, { useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { selectError } from '../redux/features/errorSlice';
-import { partyJoin } from '../redux/constants/actionCreators/partyActions';
-import { appViewSet } from '../redux/constants/actionCreators/socketActions';
+import SplitLanding from './split-views/SplitLanding';
+import JoinParty from './split-views/JoinParty';
+import CreateParty from './split-views/CreateParty';
 
-import JoinParty from '../components/JoinParty';
-import CreateParty from '../components/CreateParty';
-import { selectAppView } from '../redux/features/viewSlice';
 import '../styles/split.css';
-import Join from './Join';
 
 function Split() {
-  console.log("hi there im spit")
-  const dispatch = useAppDispatch();
+  const [view, setView] = useState('split');
 
-  const view = useAppSelector(selectAppView);
-  console.log(view)
-
-  const [code, setCode] = useState('');
-  const [codeError, setCodeError] = useState('');
-  const [name, setName] = useState('');
-  const [nameError, setNameError] = useState('');
+  const views: { [key: string]: JSX.Element } = {
+    split: <SplitLanding setView={setView} />,
+    join: <JoinParty setView={setView} />,
+    create: <CreateParty setView={setView} />,
+  };
 
   return (
     <div>
-      <div id="container">
-        <svg href="../images/split_log.svg"></svg>
-        <JoinParty />
-        <CreateParty />
-      </div>
-      <div id="footer">
-
-      </div>
+      {views[view]}
     </div>
   );
 }

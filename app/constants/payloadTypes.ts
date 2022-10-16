@@ -13,14 +13,14 @@ export type TDeleteParty = {
 };
 export type TJoinParty = {
   code: TParty['code'];
-  userId: TParty['membersId'][number]; // User Schema
+  memberId: TParty['membersId'][number]; // User Schema
 };
 export type TLeaveParty = {
   code: TParty['code'];
-  userId: TParty['membersId'][number] | string; // User Schema
+  memberId: TParty['membersId'][number] | string; // User Schema
 };
 export type TAddItem = {
-  code: TParty['code'];
+  partyCode: TParty['code'];
   item: TItem;
 };
 export type TRemoveItem = {

@@ -88,7 +88,7 @@ export default function partyHandler(io: AppServer, socket: AppSocket) {
   // @param code Code of the party
   // @param user Name of the user
   // @returns Party object
-  async function joinParty({ code, userId }: TJoinParty) {
+  async function joinParty({ code, memberId: userId }: TJoinParty) {
     if (!code) {
       socket.emit('error', { type: 'code', message: 'A room code is required' });
       return;
@@ -115,7 +115,7 @@ export default function partyHandler(io: AppServer, socket: AppSocket) {
   // @desc Removes a user from a party
   // @param code Code of the party
   // @param user Name of the user
-  async function leaveParty({ code, userId }: TLeaveParty) {
+  async function leaveParty({ code, memberId: userId }: TLeaveParty) {
     if (!code) {
       socket.emit('error', { type: 'code', message: 'A room code is required' });
       return;
@@ -147,7 +147,7 @@ export default function partyHandler(io: AppServer, socket: AppSocket) {
   socket.on('disconnect', () => {
     if (socket.data?.user?.partyCode && socket.data?.user?.userId) {
       const { partyCode, userId } = socket.data.user;
-      leaveParty({ code: partyCode, userId });
+      leaveParty({ code: partyCode, memberId: userId });
     }
   });
 

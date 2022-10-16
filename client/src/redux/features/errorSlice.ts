@@ -16,6 +16,7 @@ export const errorSlice = createSlice({
     set(state, action: PayloadAction<TError>) {
       return action.payload;
     },
+    reset: () => initialState,
   },
 });
 

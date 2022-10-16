@@ -7,9 +7,14 @@ import { SOCKET_CONNECT } from '../constants/actionNames/socketEvents';
 
 import * as PARTY_EVENTS from '../constants/actionNames/partyEvents';
 import * as ITEM_EVENTS from '../constants/actionNames/itemEvents';
+import * as USER_EVENTS from '../constants/actionNames/userEvents';
 import handleSocketConnect from './handlers/socketHandlers';
 
-const actionTypesToIntercept = [Object.values(PARTY_EVENTS), Object.values(ITEM_EVENTS)].flat();
+const actionTypesToIntercept = [
+  Object.values(PARTY_EVENTS),
+  Object.values(ITEM_EVENTS),
+  Object.values(USER_EVENTS),
+].flat();
 
 let socket: Socket | null = null;
 
@@ -21,7 +26,7 @@ const websocketMiddleware: Middleware<{}, R> = ({ dispatch, getState }) => (next
 
     socket = handleSocketConnect(dispatch);
   }
-  if (action.type in actionTypesToIntercept && socket) {
+  if (actionTypesToIntercept.includes(action.type) && socket) {
     socket.emit(action.type, action.payload);
   }
 

@@ -1,12 +1,15 @@
 import React from 'react';
+import CameraComponent from '../../components/Camera';
 
-import WebcamCapture from '../../components/WebcamCapture';
-
-function Receipt() {
+type Props = {
+  image: string;
+  setImage: (i: string) => void;
+};
+function Receipt({ image, setImage }: Props) {
   return (
     <section>
       <h1>Receipt</h1>
-      <WebcamCapture />
+      <CameraComponent image={image} setImage={setImage} />
     </section>
   );
 }

@@ -6,6 +6,7 @@ import type TSelf from '../../types/self';
 
 const initialState: TSelf = {
   name: '',
+  id: '',
 };
 
 export const selfSlice = createSlice({

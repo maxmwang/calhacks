@@ -19,7 +19,7 @@ export default function itemHandler(io: Server, socket: Socket) {
   // @desc Adds item to party
   // @param code Code of the party
   // @param item Item to add
-  async function addItem({ code, item }: TAddItem) {
+  async function addItem({ partyCode: code, item }: TAddItem) {
     if (!code) {
       socket.emit('error', { type: 'code', message: 'A room code is required' });
       return;

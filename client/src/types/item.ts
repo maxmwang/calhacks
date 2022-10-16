@@ -1,7 +1,7 @@
 type TItem = {
   name: string;
   price: number;
-  owner: string;
+  ownersId?: string[];
 };
 
 export default TItem;
