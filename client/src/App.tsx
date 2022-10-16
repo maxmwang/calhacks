@@ -8,9 +8,10 @@ import { socketConnect } from './redux/constants/actionCreators/socketActions';
 import Join from './views/Join';
 import Create from './views/Create';
 import Lobby from './views/Lobby';
+import Split from './views/Split';
 import HowItWorks from './components/HowItWorks';
 import { selectAppView } from './redux/features/viewSlice';
-
+import JoinParty from './views/JoinParty';
 function App() {
   const dispatch = useAppDispatch();
   const view = useAppSelector(selectAppView);
@@ -20,7 +21,10 @@ function App() {
     join: <Join />,
     create: <Create />,
     lobby: <Lobby />,
+    split: <Split />,
+    joinparty: <JoinParty />
   };
+  console.log(views)
 
   useEffect(() => {
     dispatch(socketConnect());
