@@ -5,7 +5,7 @@ function Title() {
   return (
     <section className="title">
       <h1>split</h1>
-      <button type="submit" onClick={async () => { await callOCRAPI(); }}>a</button>
+      <button type="submit" onClick={async () => { await console.log(await callOCRAPI()); }}>a</button>
     </section>
 
   );
