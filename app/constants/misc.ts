@@ -2,7 +2,7 @@ import { ClientToServerEvents } from './socketTypes';
 import { TParty } from '../models/partyModel';
 
 export type TError = {
-  type: 'code' | 'partyName' | 'userId' | 'item' | 'itemId';
+  type: 'code' | 'partyName' | 'userId' | 'item' | 'itemId' | 'populate';
   message: string;
 };
 

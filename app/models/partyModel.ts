@@ -29,10 +29,12 @@ export const PartySchema = new Schema<TParty>({
   },
   membersId: {
     type: [mongoose.Schema.Types.ObjectId],
+    ref: 'User',
     required: true,
   },
   itemsId: {
     type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Item',
     required: true,
     default: [],
   },

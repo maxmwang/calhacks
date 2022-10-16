@@ -1,11 +1,16 @@
 import React, { useRef } from 'react';
 import { Camera, CameraType } from 'react-camera-pro';
+import { selectItems } from '../redux/features/partySlice';
+import { useAppSelector } from '../redux/hooks';
+import TItem from '../types/item';
 
 type Props = {
   image: string;
   setImage: (i: string) => void;
 };
 function CameraComponent({ image, setImage }: Props) {
+  const dbItems = useAppSelector(selectItems) as TItem[];
+
   const camera = useRef<CameraType | null>(null);
 
   const takeImage = () => {
@@ -18,14 +23,14 @@ function CameraComponent({ image, setImage }: Props) {
     <div>
       <button type="button" onClick={takeImage}>Take photo</button>
       <div className="camera-component">
-        {!image ? (
+        {!image && !dbItems ? (
           <Camera
             ref={camera}
             facingMode="environment"
           />
-        ) : null}
+        ) : <h1>Photo already Taken!</h1>}
       </div>
-      <img src={image} alt="Taken" />
+      {image ? <img src={image} alt="Taken" /> : null}
     </div>
   );
 }

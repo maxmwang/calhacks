@@ -9,11 +9,13 @@ import {
   Th,
   Td,
   TableContainer,
+  Checkbox,
 } from '@chakra-ui/react';
 import recognize from '../../api/recognize';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { itemAdd } from '../../redux/constants/actionCreators/itemActions';
 import { selectItems, selectPartyCode } from '../../redux/features/partySlice';
+import TItem from '../../types/item';
 
 type Props = {
   image: string;
@@ -21,7 +23,7 @@ type Props = {
 function Parsed({ image }: Props) {
   const self = useAppSelector((state) => state.self);
   const partyCode = useAppSelector(selectPartyCode);
-  const dbItems = useAppSelector(selectItems);
+  const dbItems = useAppSelector(selectItems) as TItem[];
 
   const dispatch = useAppDispatch();
 
@@ -29,8 +31,7 @@ function Parsed({ image }: Props) {
     async function fetchData() {
       const items = await recognize(image) as string[];
       for (const item of items) {
-        console.log(item[0], item[1]);
-        dispatch(itemAdd(partyCode, { name: item[0], price: Number(item[1]) }));
+        dispatch(itemAdd(partyCode, { name: item[0], price: Number(item[1].slice(1)) }));
       }
     }
 
@@ -38,6 +39,12 @@ function Parsed({ image }: Props) {
       fetchData();
     }
   }, [image]);
+
+  if (typeof dbItems[0] === 'string') {
+    return (<div />);
+  }
+
+  console.log(dbItems);
 
   return (
     <TableContainer>
@@ -51,11 +58,14 @@ function Parsed({ image }: Props) {
           </Tr>
         </Thead>
         <Tbody>
-          {dbItems.map((item) => (
+          {dbItems.map((item: TItem) => (
             <Tr key={item.name}>
-              <Td>{item.ownersId!.includes(self.id)}</Td>
+              <Td><Checkbox isChecked={item.ownersId && item.ownersId!.includes(self.id)} /></Td>
               <Td>{item.name}</Td>
-              <Td isNumeric>{item.price}</Td>
+              <Td isNumeric>
+                $
+                {item.price}
+              </Td>
               <Td>some people</Td>
             </Tr>
           ))}

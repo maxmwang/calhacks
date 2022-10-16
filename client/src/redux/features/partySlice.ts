@@ -10,7 +10,7 @@ const initialState: TParty = {
   code: '',
   host: '',
   members: [],
-  items: [],
+  itemsId: [],
   tip: 0,
   tax: 0,
 };
@@ -27,6 +27,6 @@ export const partySlice = createSlice({
 
 export const selectParty = (state: RootState): TParty => state.party;
 export const selectPartyCode = (state: RootState): TParty['code'] => state.party.code;
-export const selectItems = (state: RootState): TItem[] => state.party.items;
+export const selectItems = (state: RootState): string[] | TItem[] => state.party.itemsId;
 
 export default partySlice.reducer;
