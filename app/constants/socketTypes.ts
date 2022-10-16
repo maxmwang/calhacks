@@ -1,12 +1,19 @@
+import { IncomingMessage } from 'http';
 import { Server, Socket } from 'socket.io';
-
 import { DefaultEventsMap } from 'socket.io/dist/typed-events';
-import type { TError, TSocketUser, TSuccess } from './misc';
+
+import type { TError, TSuccess } from './misc';
 import * as EVENTS from './socketEvents';
 import * as PAYLOAD_TYPES from './payloadTypes';
 
-export type AppServer = Server<ClientToServerEvents, ServerToClientEvents, I, SocketData>;
-export type AppSocket = Socket<ClientToServerEvents, ServerToClientEvents, I, SocketData>;
+declare global {
+  export interface SessionData {
+    passport: { user: { _id: string } };
+  }
+}
+
+export type AppServer = Server<ClientToServerEvents, ServerToClientEvents, I, MySocket>;
+export type AppSocket = Socket<ClientToServerEvents, ServerToClientEvents, I, MySocket>;
 
 export type ClientToServerEvents = DefaultEventsMap & {
   [EVENTS.PARTY_CREATE]: (payload: PAYLOAD_TYPES.TCreateParty) => void;
@@ -28,6 +35,12 @@ export type I = {
   ping: () => void;
 };
 
-export type SocketData = Socket & {
-  user: TSocketUser;
+interface SessionIncomingMessage extends IncomingMessage {
+  session: SessionData;
+  user: Object;
+}
+
+export type MySocket = Socket & {
+  request: SessionIncomingMessage;
+  // user: TSocketUser;
 };

@@ -16,6 +16,12 @@ export const ITEM_CLAIM = 'item/claim';
 
 export const ITEM_UNCLAIM = 'item/unclaim';
 
+export const USER_LOGIN = 'user/login';
+
+export const USER_REGISTER = 'user/register';
+
+export const USER_LOGOUT = 'user/logout';
+
 // Server to Client
 
 export const ERROR = 'error';

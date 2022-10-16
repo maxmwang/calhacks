@@ -1,9 +1,9 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { ObjectId, Schema } from 'mongoose';
 
 export type TItem = mongoose.Document & {
   name: string;
   price: number;
-  owner: string;
+  owner: ObjectId;
 };
 export const ItemSchema = new Schema<TItem>({
   name: {
@@ -16,7 +16,7 @@ export const ItemSchema = new Schema<TItem>({
     required: true,
   },
   owner: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     default: '',
   },

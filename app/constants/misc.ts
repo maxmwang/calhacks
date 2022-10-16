@@ -15,7 +15,7 @@ export type TSuccess = {
   // => [client -> create.jsx] error handler
 };
 
-export type TSocketUser = {
-  name: TParty['members'][number];
-  partyCode: TParty['code'];
-};
+// export type TSocketUser = {
+//   userId: TParty['members'][number];
+//   partyCode: TParty['code'];
+// };

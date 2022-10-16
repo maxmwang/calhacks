@@ -1,13 +1,11 @@
-import mongoose, { Schema } from 'mongoose';
-
-import { ItemSchema, TItem } from './itemModel';
+import mongoose, { ObjectId, Schema } from 'mongoose';
 
 export type TParty = mongoose.Document & {
   name: string;
   code: string;
   host: string;
-  members: string[];
-  items: TItem[];
+  membersId: ObjectId[];
+  itemsId: ObjectId[];
   tip: number;
   tax: number;
 };
@@ -29,12 +27,12 @@ export const PartySchema = new Schema<TParty>({
     required: true,
     trim: true,
   },
-  members: {
-    type: [String],
+  membersId: {
+    type: [mongoose.Schema.Types.ObjectId],
     required: true,
   },
-  items: {
-    type: [ItemSchema],
+  itemsId: {
+    type: [mongoose.Schema.Types.ObjectId],
     required: true,
     default: [],
   },

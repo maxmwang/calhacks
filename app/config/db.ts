@@ -1,15 +1,15 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import mongoose from 'mongoose';
 
-const connectDB = async () => {
+const initDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI!);
 
     console.log('MongoDB Connected');
+    return mongoose.connection.getClient();
   } catch (error) {
     console.log(error);
-    process.exit(1);
+    return process.exit(1);
   }
 };
 
-export default connectDB;
+export default initDB;

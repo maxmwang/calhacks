@@ -13,11 +13,11 @@ export type TDeleteParty = {
 };
 export type TJoinParty = {
   code: TParty['code'];
-  member: TParty['members'][number]; // User Schema
+  // member: TParty['members'][number]; // User Schema
 };
 export type TLeaveParty = {
   code: TParty['code'];
-  member: TParty['members'][number]; // User Schema
+  // member: TParty['members'][number]; // User Schema
 };
 export type TAddItem = {
   code: TParty['code'];
