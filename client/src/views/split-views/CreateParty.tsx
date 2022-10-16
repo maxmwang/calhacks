@@ -21,7 +21,7 @@ function JoinParty({ setView }: Props) {
     <div>
       <div id="component">
         <div id="form">
-          <h1>Join Party!</h1>
+          <h1>Create Party!</h1>
           <input placeholder="Enter Party Name" value={code} onChange={(e) => setCode(e.target.value)} />
           <input placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
           <input placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
