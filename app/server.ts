@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import session from 'express-session';
+import session, { Session } from 'express-session';
 import http from 'http';
-import { Server, type Socket } from 'socket.io';
+import { Server } from 'socket.io';
 import passport from 'passport';
 import MongoStore from 'connect-mongo';
 
@@ -15,6 +15,8 @@ import type {
   ServerToClientEvents as S,
   I,
   MySocket as S_D,
+  MySocket,
+  AppSocket,
   // AppSocket,
 } from './constants/socketTypes';
 
@@ -25,7 +27,14 @@ import userRoutes from './routes/userRoutes';
 // import partyHandler from './handlers/partyHandler';
 // import itemHandler from './handlers/itemHandler';
 
-// add typing for req.session
+// add typing
+declare module 'http' {
+  interface IncomingMessage {
+    session: Session & {
+      authenticated: boolean
+    }
+  }
+}
 declare module 'express-session' {
   export interface SessionData {
     passport: { user: { _id: string } };
@@ -57,8 +66,6 @@ const sessionMiddleware = session({
 });
 
 const app = express();
-const server = http.createServer(app);
-const io: AppServer = new Server<C, S, I, S_D>(server);
 
 // http server
 app.use(express.json());
@@ -70,14 +77,33 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api/users', userRoutes);
+app.get('/test', (req, res) => {
+  console.log(req.isAuthenticated());
+  console.log(req.session);
+  res.end();
+});
 
-const wrap = (middleware: any) => (s: Socket, next: any) => middleware(s.request, {}, next);
+const server = http.createServer(app);
+const io: AppServer = new Server<C, S, I, S_D>(server);
+
+const wrap = (m: any) => (s: AppSocket, next: any) => {
+  const socket = s as MySocket;
+  socket.request.test = 1;
+  console.log(typeof m);
+  return m(socket.request, {}, next);
+};
 
 io.use(wrap(sessionMiddleware));
 io.use(wrap(passport.initialize()));
 io.use(wrap(passport.session()));
 
-io.use(auth);
+io.use((s, n) => auth(<MySocket> s, n));
+
+io.on('connection', (s: AppSocket) => {
+  const socket = <MySocket> s;
+  console.log(socket.request.logIn());
+  console.log(socket.request.passport);
+});
 
 // websocket server
 // io.on('connection', async (socket: AppSocket) => {

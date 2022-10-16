@@ -1,7 +1,6 @@
 import { MySocket } from '../constants/socketTypes';
 
 const auth = (socket: MySocket, next: any) => {
-  console.log(socket.request.user);
   // if (socket.request.request) {
   //   next();
   // } else {

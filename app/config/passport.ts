@@ -28,7 +28,7 @@ function initPassport() {
     return callback(null, user);
   }));
 
-  passport.serializeUser((user: Express.User, callback) => {
+  passport.serializeUser((user: any, callback) => {
     const { _id } = user;
     callback(null, { _id });
   });

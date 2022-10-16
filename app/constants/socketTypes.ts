@@ -36,8 +36,10 @@ export type I = {
 };
 
 interface SessionIncomingMessage extends IncomingMessage {
-  session: SessionData;
-  user: Object;
+  passport: any;
+  res: any;
+  test: number;
+  logIn: any;
 }
 
 export type MySocket = Socket & {
