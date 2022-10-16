@@ -1,0 +1,18 @@
+.chakra-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  width: 80vw;
+}
+
+.chakra-tabs>.chakra-tabs__tablist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.chakra-tabs>.chakra-tabs__tablist>.chakra-tabs__tab {
+  width: 100px;
+}

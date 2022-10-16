@@ -1,0 +1,8 @@
+node_modules
+build
+
+.env
+.eslintrc.json
+.vscode
+.DS_Store
+.gitattributes
