@@ -25,19 +25,21 @@ function LoginSignup() {
           <button type="submit" id="next" onClick={() => dispatch(userLogin(username, password))}>Log In</button>
           <button type="submit" id="next" onClick={() => setView('signup')}>Register</button>
         </div>
-        
+
       </div>
     ),
     signup: (
       <div id="component">
         <div id="form">
-          <h1>Login!</h1>
+          <h1>Sign Up!</h1>
           <input placeholder="Enter Username" value={username} onChange={(e) => setUsername(e.target.value)} />
           <input placeholder="Enter Password" value={password} type="password" onChange={(e) => setPassword(e.target.value)} />
-          <input placeholder="Enter Password" value={confirm} type="password" onChange={(e) => setConfirm(e.target.value)} />
+          <input placeholder="Confirm Password" value={confirm} type="password" onChange={(e) => setConfirm(e.target.value)} />
         </div>
-        <button type="submit" id="next" onClick={() => dispatch(userRegister(username, password))}>Sign Up</button>
-        <button type="submit" id="next" onClick={() => setView('login')}>Log In</button>
+        <div id="buttonwrapper">
+          <button type="submit" id="next" onClick={() => dispatch(userRegister(username, password))}>Sign Up</button>
+          <button type="submit" id="next" onClick={() => setView('login')}>Log In</button>
+        </div>
       </div>
     ),
   };
