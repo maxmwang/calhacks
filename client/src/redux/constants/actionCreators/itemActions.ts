@@ -22,20 +22,20 @@ export const itemRemove = (partyCode: string, itemId: string) => ({
   },
 });
 
-export const itemClaim = (partyCode: string, itemId: string, owner: string) => ({
+export const itemClaim = (partyCode: string, itemId: string, ownerId: string) => ({
   type: ITEM_CLAIM,
   payload: {
     partyCode,
     itemId,
-    owner,
+    ownerId,
   },
 });
 
-export const itemUnclaim = (partyCode: string, itemId: string, owner: string) => ({
+export const itemUnclaim = (partyCode: string, itemId: string, ownerId: string) => ({
   type: ITEM_UNCLAIM,
   payload: {
     partyCode,
     itemId,
-    owner,
+    ownerId,
   },
 });

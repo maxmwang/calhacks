@@ -23,19 +23,19 @@ export const partyDelete = (code: string, host: string) => ({
   },
 });
 
-export const partyJoin = (code: string, member: string) => ({
+export const partyJoin = (code: string, memberId: string) => ({
   type: PARTY_JOIN,
   payload: {
     code,
-    member,
+    memberId,
   },
 });
 
-export const partyLeave = (code: string, member: string) => ({
+export const partyLeave = (code: string, memberId: string) => ({
   type: PARTY_LEAVE,
   payload: {
     code,
-    member,
+    memberId,
   },
 });
 
